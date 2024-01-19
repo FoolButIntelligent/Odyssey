@@ -23,21 +23,5 @@ public class PlayerEvents
     public UnityEvent OnGlidingStoped;
     public UnityEvent OnDashStarted;
     public UnityEvent OnDashEnded;
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-}
+
+}  

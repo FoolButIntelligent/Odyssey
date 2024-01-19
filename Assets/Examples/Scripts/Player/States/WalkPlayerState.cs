@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdlePlayerState : PlayerState
+public class WalkPlayerState : PlayerState 
 {
    protected override void OnEnter(Player player)
    {
@@ -16,11 +16,13 @@ public class IdlePlayerState : PlayerState
 
    protected override void OnStep(Player player)
    {
-      var inputDirection = player.inputs.GetMovementDirection();
+      var inputDirection = player.inputs.GetMovementCameraDirection();
 
-      if (inputDirection.sqrMagnitude > 0 || player.lateralVelocity.sqrMagnitude > 0)
+      if (inputDirection.sqrMagnitude > 0 )
       {
+         var dot = Vector3.Dot(inputDirection, player.lateralVelocity);
          player.states.Change<WalkPlayerState>();
+         player.Accelerate(inputDirection);
       }
    }
 }

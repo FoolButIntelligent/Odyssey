@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class EntityStateManager : MonoBehaviour
 {
-
+    
 }
 public abstract class EntityStateManager<T> : EntityStateManager where T :  Entity<T>
 {
@@ -14,7 +14,7 @@ public abstract class EntityStateManager<T> : EntityStateManager where T :  Enti
     protected abstract List<EntityState<T>> GetStateList();
     public EntityState<T> current { get; protected set; }
     public T entity { get; protected set; }
-    
+    public EntityState<T> last { get; protected set; }
     protected virtual void InitialzeStates()
     {
         m_list = GetStateList();
@@ -43,6 +43,30 @@ public abstract class EntityStateManager<T> : EntityStateManager where T :  Enti
         if (current != null && Time.deltaTime > 0)
         {
             current.Step(entity);
+        }
+    }
+
+    public virtual void Change<Tstate>() where Tstate : EntityState<T>
+    {
+        var type = typeof(Tstate);
+        if (m_states.ContainsKey(type))
+        {
+            Change(m_states[type]);
+        }
+    }
+
+    public virtual void Change(EntityState<T> to)
+    {
+        if (to != null && Time.deltaTime > 0)
+        {
+            if (current != null)
+            {
+                current.Exit(entity);
+                last = current;
+            }
+            
+            current = to;
+            current.Enter(entity); 
         }
     }
 }
