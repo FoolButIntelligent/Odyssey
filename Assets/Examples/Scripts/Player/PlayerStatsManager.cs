@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerState : EntityState<Player>
+public class PlayerStatsManager : EntityStatsManager<PlayerStats>
 {
-    
+   
 }

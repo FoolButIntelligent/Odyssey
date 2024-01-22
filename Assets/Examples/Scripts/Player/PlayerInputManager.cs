@@ -10,6 +10,7 @@ public class PlayerInputManager : MonoBehaviour
     public InputActionAsset actions;
     protected float m_movementDirectionUnlockTime;
     protected InputAction m_movement;
+    protected InputAction m_run;
     protected Camera m_camera;
     
     protected virtual void Awake() => CacheActions();
@@ -34,9 +35,12 @@ public class PlayerInputManager : MonoBehaviour
     {
         actions?.Disable();
     }
+
+    public virtual bool GetRun() => m_run.IsPressed();
     protected virtual void CacheActions()
     {
         m_movement = actions["Movement"];
+        m_run = actions["Run"];
     }
 
     public virtual Vector3 GetMovementDirection()
