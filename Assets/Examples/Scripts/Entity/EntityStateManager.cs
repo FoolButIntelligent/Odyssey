@@ -15,6 +15,7 @@ public abstract class EntityStateManager<T> : EntityStateManager where T :  Enti
     public EntityState<T> current { get; protected set; }
     public T entity { get; protected set; }
     public EntityState<T> last { get; protected set; }
+    protected virtual void InitializeEntity() => entity = GetComponent<T>();
     protected virtual void InitialzeStates()
     {
         m_list = GetStateList();
@@ -36,11 +37,12 @@ public abstract class EntityStateManager<T> : EntityStateManager where T :  Enti
     protected void Start()
     {
        InitialzeStates(); 
+       InitializeEntity();
     }
 
     public virtual void Step()
     {
-        if (current != null && Time.deltaTime > 0)
+        if (current != null && Time.timeScale > 0)
         {
             current.Step(entity);
         }
@@ -57,7 +59,7 @@ public abstract class EntityStateManager<T> : EntityStateManager where T :  Enti
 
     public virtual void Change(EntityState<T> to)
     {
-        if (to != null && Time.deltaTime > 0)
+        if (to != null && Time.timeScale> 0)
         {
             if (current != null)
             {
@@ -67,6 +69,7 @@ public abstract class EntityStateManager<T> : EntityStateManager where T :  Enti
             
             current = to;
             current.Enter(entity); 
+            
         }
     }
 }

@@ -6,9 +6,9 @@ public class PlayerStats : EntityStats<PlayerStats>
 { 
     [Header("Motion Stats")] 
     public float brakeThreshold = -0.8f;
-    public float turningDrag = 28f;
-    public float acceleraiton = 13f;
-    public float topSpeed = 6f;
+    public float turningDrag = 30f;
+    public float acceleraiton = 16f;
+    public float topSpeed = 7.5f;
     public float airAcceleration = 32f;
 
     [Header("Running Stats")] 
