@@ -17,14 +17,36 @@ public abstract class Entity<T> : Entity where T :Entity<T>
     public float turningDragMultiplier { get; set; } = 1f;
     public float turningSpeedMultiplier { get; set; } = 1f;
     public float accelerationMultiplier { get; set; } = 1f;
+    public CharacterController controller { get; protected set; }
+    
     public Vector3 lateralVelocity
     {
         get { return new Vector3(velocity.x, 0, velocity.z);}
         set { velocity = new Vector3(value.x, velocity.y, value.z); }
     }
+    
+    public Vector3 verticalVelocity
+    {
+        get { return new Vector3(0, velocity.y, 0);}
+        set { velocity = new Vector3(velocity.x,value.y,velocity.z); }
+    }
+
+    protected virtual void InitializController()
+    {
+        controller = GetComponent<CharacterController>();
+        if (!controller)
+        {
+            controller = gameObject.AddComponent<CharacterController>();
+        }
+
+        controller.skinWidth = 0.005f;
+        controller.minMoveDistance = 0;
+    }
+    
     protected virtual void Awake()
     {
        InitializeStateManager();
+       InitializController();
     }
 
     protected void Update()
@@ -35,6 +57,11 @@ public abstract class Entity<T> : Entity where T :Entity<T>
 
     protected virtual void HandleController()
     {
+        if (controller.enabled)
+        {
+            controller.Move(velocity * Time.deltaTime);
+            return;
+        }
         transform.position += velocity * Time.deltaTime;
     }
     

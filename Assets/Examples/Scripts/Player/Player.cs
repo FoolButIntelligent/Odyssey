@@ -7,6 +7,9 @@ public class Player : Entity<Player>
     public PlayerEvents PlayerEvents;
     public PlayerInputManager inputs { get; protected set; }
     public PlayerStatsManager stats { get; protected set; }
+    public int jumpCounter { get; protected set; }
+    public bool holding { get; protected set; }
+    
     protected virtual void InitializeInputs() => inputs = GetComponent<PlayerInputManager>();
     protected virtual void InitializeStats() => stats = GetComponent<PlayerStatsManager>();
 
@@ -34,6 +37,4 @@ public class Player : Entity<Player>
         var finalAcceleration = isGrounded ? acceleration : stats.current.airAcceleration;
         Accelerate(direction,turningDrag,finalAcceleration,topSpeed);
     }
-     
-    //public virtual void Accelerate(Vector3 direction,float turningDrag,float acceleration,float topSpeed)
 }

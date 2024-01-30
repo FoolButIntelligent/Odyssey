@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class EntityStateManager : MonoBehaviour
 {
-    
+    public EntityStateManagerEvents events; 
 }
 public abstract class EntityStateManager<T> : EntityStateManager where T :  Entity<T>
 {
@@ -15,6 +15,8 @@ public abstract class EntityStateManager<T> : EntityStateManager where T :  Enti
     public EntityState<T> current { get; protected set; }
     public T entity { get; protected set; }
     public EntityState<T> last { get; protected set; }
+    public int lastIndex => m_list.IndexOf(last);
+    public int index => m_list.IndexOf(current);
     protected virtual void InitializeEntity() => entity = GetComponent<T>();
     protected virtual void InitialzeStates()
     {
