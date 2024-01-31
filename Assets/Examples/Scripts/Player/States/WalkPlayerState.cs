@@ -21,8 +21,15 @@ public class WalkPlayerState : PlayerState
       if (inputDirection.sqrMagnitude > 0 )
       {
          var dot = Vector3.Dot(inputDirection, player.lateralVelocity);
-         if(dot >= player.stats.current.brakeThreshold)
+         if (dot >= player.stats.current.brakeThreshold)
+         {
             player.Accelerate(inputDirection);
+            player.FaceDirectionSmooth(player.lateralVelocity);
+         }
+         else
+         {
+            player.states.Change<BrakePlayerState>();
+         }
       }
    }
 }
