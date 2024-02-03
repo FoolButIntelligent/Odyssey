@@ -17,10 +17,19 @@ public class BrakePlayerState : PlayerState
     protected override void OnStep(Player player)
     {
         player.Decelerate();
-
-        if (player.lateralVelocity.sqrMagnitude == 0)
-        {
-            player.states.Change<IdlePlayerState>();
-        }
+        // var inputDerection = player.inputs.GetMovementCameraDirection();
+        // //
+        // // if (player.stats.current.canBackflip &&
+        // //     Vector3.Dot(inputDerection, player.transform.forward) < 0)
+        // // {
+        // //     // player.Backflip(player.stats.current.backflipBackwardTurnForce);
+        // // }
+        // // else
+        // // {
+            if (player.lateralVelocity.sqrMagnitude == 0)
+            {
+                player.states.Change<IdlePlayerState>();
+            }
+        // }
     }
 }

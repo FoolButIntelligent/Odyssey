@@ -18,7 +18,7 @@ public class PlayerEvents
     public UnityEvent OnLedgeGrabbed;
     public UnityEvent OnLedgeClimbing;
     public UnityEvent OnAirDive;
-    public UnityEvent OnBackFlip;
+    public UnityEvent OnBackflip;
     public UnityEvent OnGlidingStarted;
     public UnityEvent OnGlidingStoped;
     public UnityEvent OnDashStarted;

@@ -18,6 +18,7 @@ public abstract class Entity<T> : Entity where T :Entity<T>
     public float turningSpeedMultiplier { get; set; } = 1f;
     public float accelerationMultiplier { get; set; } = 1f;
     public float decelerationMultiplier { get; set; } = 1f;
+    public float gravityMultiplier { get; set; } = 1f;
     public CharacterController controller { get; protected set; }
     
     public Vector3 lateralVelocity
@@ -50,7 +51,7 @@ public abstract class Entity<T> : Entity where T :Entity<T>
        InitializController();
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         HandleStates();
         HandleController();
@@ -103,5 +104,13 @@ public abstract class Entity<T> : Entity where T :Entity<T>
     {
         var delta = deceleration * decelerationMultiplier * Time.deltaTime;
         lateralVelocity = Vector3.MoveTowards(lateralVelocity, Vector3.zero, delta);
+    }
+
+    public virtual void Gravity(float gravity)
+    {
+        if (!isGrounded)
+        {
+            verticalVelocity += Vector3.down * gravity * gravityMultiplier * Time.deltaTime;
+        }
     }
 }

@@ -87,6 +87,8 @@ MonoBehaviour:
   states:
   - IdlePlayerState
   - WalkPlayerState
+  - BrakePlayerState
+  - BackflipPlayerState
 --- !u!114 &2671009089365369317
 MonoBehaviour:
   m_ObjectHideFlags: 0

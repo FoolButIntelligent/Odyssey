@@ -16,6 +16,8 @@ public class IdlePlayerState : PlayerState
 
    protected override void OnStep(Player player)
    {
+      player.Friction();
+      
       var inputDirection = player.inputs.GetMovementDirection();
 
       if (inputDirection.sqrMagnitude > 0 || player.lateralVelocity.sqrMagnitude > 0)
