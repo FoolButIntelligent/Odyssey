@@ -106,11 +106,11 @@ public abstract class Entity<T> : Entity where T :Entity<T>
         lateralVelocity = Vector3.MoveTowards(lateralVelocity, Vector3.zero, delta);
     }
 
-    public virtual void Gravity(float gravity)
-    {
-        if (!isGrounded)
-        {
-            verticalVelocity += Vector3.down * gravity * gravityMultiplier * Time.deltaTime;
-        }
-    }
+    // public virtual void Gravity(float gravity)
+    // {
+    //     if (!isGrounded)
+    //     {
+    //         verticalVelocity += Vector3.down * gravity * gravityMultiplier * Time.deltaTime;
+    //     }
+    // }
 }

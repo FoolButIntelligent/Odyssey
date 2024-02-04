@@ -14,7 +14,7 @@ public class PlayerInputManager : MonoBehaviour
     protected Camera m_camera;
     
     protected virtual void Awake() => CacheActions();
-    // Start is called before the first frame update
+  
     void Start()
     {
         m_camera = Camera.main;

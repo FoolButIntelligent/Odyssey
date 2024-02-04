@@ -7,6 +7,9 @@ public class PlayerStats : EntityStats<PlayerStats>
     [Header("General Stats")] 
     public float rotationSpeed = 970f;
     public float friction = 16f;
+    public float gravityTopSpeed = 58f;
+    public float gravity = 38f;
+    public float fallGravity = 65;
     [Header("Motion Stats")] 
     public float brakeThreshold = -0.8f;
     public float turningDrag = 28f;

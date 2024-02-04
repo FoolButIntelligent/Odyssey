@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.Jobs;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
@@ -49,20 +50,36 @@ public class Player : Entity<Player>
         Decelerate(stats.current.friction);
     }
     
-    public virtual void Backflip(float force)
-    {
-        if (stats.current.canBackflip)
-        {
-            verticalVelocity = Vector3.up * stats.current.backlflipJumpHeight;
-            lateralVelocity = -transform.forward * force;
-            states.Change<BackflipPlayerState>();
-    //        PlayerEvents.OnBackflip.Invoke();
-        }
-    }
+     public virtual void Gravity()
+     {
+         if (!isGrounded && verticalVelocity.y > -stats.current.gravityTopSpeed)
+         {
+             var speed = verticalVelocity.y;
+             var force = verticalVelocity.y > 0 ? stats.current.gravity : stats.current.fallGravity;
+             speed -= force * gravityMultiplier * Time.deltaTime;
+             speed = Mathf.Max(speed, -stats.current.gravityTopSpeed);
+             verticalVelocity = new Vector3(0, speed, 0);
+             
+         }
+         
+     }
+     
+    // public virtual void Backflip(float force)
+    // {
+    //     if (stats.current.canBackflip)
+    //     {
+    //         verticalVelocity = Vector3.up * stats.current.backlflipJumpHeight;
+    //         lateralVelocity = -transform.forward * force;
+    //         states.Change<BackflipPlayerState>();
+    // //        PlayerEvents.OnBackflip.Invoke();
+    //     }
+    // }
+
+   
     
-    public virtual void BackflipAcceleration()
-    {
-        var direction = inputs.GetMovementCameraDirection();
-        Accelerate(direction,stats.current.backflipTuningDrag,stats.current.backflipAirAcceleration,stats.current.backflipTopSpeed);
-    }
+    // public virtual void BackflipAcceleration()
+    // {
+    //     var direction = inputs.GetMovementCameraDirection();
+    //     Accelerate(direction,stats.current.backflipTuningDrag,stats.current.backflipAirAcceleration,stats.current.backflipTopSpeed);
+    // }
 }
