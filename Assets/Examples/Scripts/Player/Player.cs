@@ -63,6 +63,14 @@ public class Player : Entity<Player>
          }
          
      }
+
+     public virtual void Fall()
+     {
+         if (!isGrounded)
+         {
+             states.Change<FallPlayerState>();
+         }
+     }
      
     // public virtual void Backflip(float force)
     // {

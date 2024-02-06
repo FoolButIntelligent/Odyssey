@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3348544759019683499}
   - component: {fileID: 2671009089365369317}
   - component: {fileID: 6672535058828399878}
+  - component: {fileID: 6194260955851798115}
   m_Layer: 0
   m_Name: Alice
   m_TagString: Untagged
@@ -88,7 +89,7 @@ MonoBehaviour:
   - IdlePlayerState
   - WalkPlayerState
   - BrakePlayerState
-  - BackflipPlayerState
+  - FallPlayerState
 --- !u!114 &2671009089365369317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +132,24 @@ MonoBehaviour:
     toAnimationState: Idle
   minLateralAnimationSpeed: 0.5
   animator: {fileID: 3593704427391233310}
+--- !u!143 &6194260955851798115
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6968742678998026874}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6968742677603389583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -144,15 +163,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 40e21d8ce79cdf04a9168a06cb1ed52e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 40e21d8ce79cdf04a9168a06cb1ed52e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.95
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 40e21d8ce79cdf04a9168a06cb1ed52e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 40e21d8ce79cdf04a9168a06cb1ed52e, type: 3}
       propertyPath: m_LocalRotation.w

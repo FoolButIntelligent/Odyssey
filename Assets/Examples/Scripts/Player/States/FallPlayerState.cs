@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrakePlayerState : PlayerState
+public class FallPlayerState : PlayerState
 {
     protected override void OnEnter(Player player)
     {
@@ -16,11 +16,11 @@ public class BrakePlayerState : PlayerState
 
     protected override void OnStep(Player player)
     {
-        player.Fall();
-        player.Decelerate();
-        
-        if (player.lateralVelocity.sqrMagnitude == 0) 
-        { 
+        player.Gravity();
+        player.FaceDirectionSmooth(player.lateralVelocity);
+
+        if (player.isGrounded)
+        {
             player.states.Change<IdlePlayerState>();
         }
     }

@@ -497,6 +497,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6194260955851798115, guid: 48caa26bcdfef7246b9067054f959521, type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.005
+      objectReference: {fileID: 0}
     - target: {fileID: 6968742678998026873, guid: 48caa26bcdfef7246b9067054f959521, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -507,7 +511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6968742678998026873, guid: 48caa26bcdfef7246b9067054f959521, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.01
       objectReference: {fileID: 0}
     - target: {fileID: 6968742678998026873, guid: 48caa26bcdfef7246b9067054f959521, type: 3}
       propertyPath: m_LocalPosition.z

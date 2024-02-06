@@ -17,6 +17,7 @@ public class WalkPlayerState : PlayerState
    protected override void OnStep(Player player)
    {
       player.Gravity();
+      player.Fall();
       
       var inputDirection = player.inputs.GetMovementCameraDirection();
 
