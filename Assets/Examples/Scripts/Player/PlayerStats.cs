@@ -22,13 +22,10 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float runningAcceleration = 16f;
     public float runningTopSpeed = 7.5f;
     public float runningTurningRrag = 14f;
-    [Header("Backflip Stats")]
-    public bool canBackflip = true;
-    public float backlflipJumpHeight = 23f;
-    public float backflipGravity = 35f;
-    public float backflipTuningDrag = 2.5f;
-    public float backflipAirAcceleration = 12f;
-    public float backflipTopSpeed = 7.5f;
-    public float backflipBackwardTurnForce = 8f;
+    [Header("Jump Stats")] 
+    public int multiJumps = 1;
+    public float coyoteJumpThreshold = 0.15f;
+    public float maxJumpHeight = 17f;
+    public float minJumpHeight = 10f;
 }
 

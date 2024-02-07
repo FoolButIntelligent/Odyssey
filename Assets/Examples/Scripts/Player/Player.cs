@@ -7,7 +7,7 @@ using Update = UnityEngine.PlayerLoop.Update;
 
 public class Player : Entity<Player>
 {
-    public PlayerEvents PlayerEvents;
+    public PlayerEvents playerEvents;
     public PlayerInputManager inputs { get; protected set; }
     public PlayerStatsManager stats { get; protected set; }
     public int jumpCounter { get; protected set; }
@@ -71,23 +71,50 @@ public class Player : Entity<Player>
              states.Change<FallPlayerState>();
          }
      }
-     
-    // public virtual void Backflip(float force)
-    // {
-    //     if (stats.current.canBackflip)
-    //     {
-    //         verticalVelocity = Vector3.up * stats.current.backlflipJumpHeight;
-    //         lateralVelocity = -transform.forward * force;
-    //         states.Change<BackflipPlayerState>();
-    // //        PlayerEvents.OnBackflip.Invoke();
-    //     }
-    // }
 
-   
-    
-    // public virtual void BackflipAcceleration()
-    // {
-    //     var direction = inputs.GetMovementCameraDirection();
-    //     Accelerate(direction,stats.current.backflipTuningDrag,stats.current.backflipAirAcceleration,stats.current.backflipTopSpeed);
-    // }
+     public virtual void Jump()
+     {
+         var canMultiJump = (jumpCounter > 0) && (jumpCounter < stats.current.multiJumps);
+         var canCoyoteJump = (jumpCounter == 0) && (Time.time < lastGroundTime + stats.current.coyoteJumpThreshold);
+
+         if (isGrounded || canMultiJump || canCoyoteJump)
+         {
+             if (inputs.GetJumpDown())
+             {
+                 Jump(stats.current.maxJumpHeight);
+             }
+         }
+
+         if (inputs.GetJumpUp() && (jumpCounter > 0) && verticalVelocity.y > stats.current.minJumpHeight)
+         {
+             verticalVelocity = Vector3.up * stats.current.minJumpHeight;
+         }
+     }
+
+     public virtual void Jump(float height)
+     {
+         jumpCounter++;
+         verticalVelocity = Vector3.up * height;
+         states.Change<FallPlayerState>();
+         playerEvents.OnJump?.Invoke();
+     }
+
+     // public virtual void Backflip(float force)
+     // {
+     //     if (stats.current.canBackflip)
+     //     {
+     //         verticalVelocity = Vector3.up * stats.current.backlflipJumpHeight;
+     //         lateralVelocity = -transform.forward * force;
+     //         states.Change<BackflipPlayerState>();
+     // //        PlayerEvents.OnBackflip.Invoke();
+     //     }
+     // }
+
+
+
+     // public virtual void BackflipAcceleration()
+     // {
+     //     var direction = inputs.GetMovementCameraDirection();
+     //     Accelerate(direction,stats.current.backflipTuningDrag,stats.current.backflipAirAcceleration,stats.current.backflipTopSpeed);
+     // }
 }

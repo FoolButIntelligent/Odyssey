@@ -471,7 +471,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3348544759019683499, guid: 48caa26bcdfef7246b9067054f959521, type: 3}
       propertyPath: states.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3348544759019683499, guid: 48caa26bcdfef7246b9067054f959521, type: 3}
       propertyPath: states.Array.data[2]
@@ -479,7 +479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3348544759019683499, guid: 48caa26bcdfef7246b9067054f959521, type: 3}
       propertyPath: states.Array.data[3]
-      value: BrakePlayerState
+      value: FallPlayerState
       objectReference: {fileID: 0}
     - target: {fileID: 3348544759019683499, guid: 48caa26bcdfef7246b9067054f959521, type: 3}
       propertyPath: events.onChange.m_PersistentCalls.m_Calls.Array.size
@@ -495,6 +495,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3593704427391233310, guid: 48caa26bcdfef7246b9067054f959521, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593704427391233310, guid: 48caa26bcdfef7246b9067054f959521, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6194260955851798115, guid: 48caa26bcdfef7246b9067054f959521, type: 3}

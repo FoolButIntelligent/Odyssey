@@ -16,6 +16,7 @@ public class BrakePlayerState : PlayerState
 
     protected override void OnStep(Player player)
     {
+        player.Jump();
         player.Fall();
         player.Decelerate();
         
