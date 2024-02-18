@@ -8,8 +8,13 @@ public class PlayerAnimator : MonoBehaviour
    [System.Serializable]
    public class ForcedTransition
    {
+      [Tooltip("The index of the Player State from the Player State Manager that you want to force a transition from.")]
       public int fromStateId;
-      public int animatorLayer;
+
+      [Tooltip("The index of the layer from your Animator Controller that contains the target animation. (It's 0 if the animation is inside the 'Base Layer')")]
+      public int animationLayer;
+
+      [Tooltip("The name of the Animation State you want to play right after finishing the Player State from above.")]
       public string toAnimationState;
    }
 
@@ -52,10 +57,7 @@ public class PlayerAnimator : MonoBehaviour
       InitializeParameterHash();
       InitializeAnimationTriggers();
    }
-   protected void LateUpdate()
-   {
-      HandleAnimatorParameter();
-   }
+   protected void LateUpdate() => HandleAnimatorParameter();
 
    protected virtual void InitializePlayer()
    {
@@ -102,7 +104,7 @@ public class PlayerAnimator : MonoBehaviour
 
       if (m_forcedTransition.ContainsKey(lastStateIndex))
       {
-         var layer = m_forcedTransition[lastStateIndex].animatorLayer;
+         var layer = m_forcedTransition[lastStateIndex].animationLayer;
          animator.Play(m_forcedTransition[lastStateIndex].toAnimationState,layer);
       }
    }
@@ -112,13 +114,14 @@ public class PlayerAnimator : MonoBehaviour
       //模长速度
       var lateralSpeed = m_player.lateralVelocity.magnitude;
       //y轴速度
-      var verticalSpeed = m_player.verticalVelocity;
+      var verticalSpeed = m_player.verticalVelocity.y;
       //动画速度
       var lateralAnimationSpeed = Mathf.Max(minLateralAnimationSpeed, lateralSpeed / m_player.stats.current.topSpeed);
       
       animator.SetInteger(m_stateHash,m_player.states.index);
       animator.SetInteger(m_lastStateHash,m_player.states.lastIndex);
       animator.SetFloat(m_lateralSpeedHash,lateralSpeed);
+      animator.SetFloat(m_verticalSpeedHash, verticalSpeed);
       animator.SetFloat(m_lateralAnimationSpeedHash,lateralAnimationSpeed);
       animator.SetInteger(m_jumpCounterHash,m_player.jumpCounter);
       animator.SetBool(m_isGroundedHash,m_player.isGrounded);
