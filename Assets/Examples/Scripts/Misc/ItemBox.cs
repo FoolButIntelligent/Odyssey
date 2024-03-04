@@ -33,7 +33,14 @@ public class ItemBox : MonoBehaviour,IEntityContact
         {
             if (m_index < collectables.Length)
             {
-                //if(collectables[m_index])
+                if (collectables[m_index].hidden)
+                {
+                    collectables[m_index].Collect(player);
+                }
+                else
+                {
+                    collectables[m_index].gameObject.SetActive(true);
+                }
             }
         }
     }

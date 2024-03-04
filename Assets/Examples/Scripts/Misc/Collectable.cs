@@ -10,11 +10,17 @@ public class Collectable : MonoBehaviour
 {
    [Header("General Settings")] 
    public GameObject display;
+   public AudioClip clip;
+   public int times = 1;
+   public ParticleSystem particle;
 
    public float ghostingDuration = 0.5f;
    
    [Header("Visibility Settings")] 
    public bool hidden;
+   public float quickShowHeight = 2f;
+   public float quickShowDuration = 0.25f;
+   public float hideDuration = 0.5f;
    
    [Header("Life Time")] 
    public bool hasLifeTime;
@@ -30,7 +36,10 @@ public class Collectable : MonoBehaviour
    public float maxBounceYVelocity = 10f;
    public AudioClip collisionClip;
    public float minForceToStopPhysics = 3f;
-   
+
+
+   [Space(15)] 
+   public PlayerEvent onCollect;
    protected AudioSource m_audio;
    protected Collider m_collider;
    protected Vector3 m_velocity;
@@ -99,15 +108,6 @@ public class Collectable : MonoBehaviour
       }
    }
    
-   protected virtual void Awake()
-   {
-      InitializeAudio();
-      InitializeCollider();
-      InitializeTransform();
-      InitializeDisplay();
-      InitializeVelocity();
-   }
-
    public virtual void Vanish()
    {
       if (!m_vanished)
@@ -162,6 +162,71 @@ public class Collectable : MonoBehaviour
       }
 
       transform.position += m_velocity * Time.deltaTime;
+   }
+
+   public virtual void Collect(Player player)
+   {
+      if (!m_vanished && !m_ghosting)
+      {
+         if (!hidden)
+         {
+            Vanish();
+
+            if (particle != null)
+            {
+                particle.Play();
+            }
+         }
+         else
+         {
+            StartCoroutine(QuickShowRoutine());
+         }
+
+         StartCoroutine(CollectRoutine(player));
+      }
+   }
+
+   protected virtual IEnumerator CollectRoutine(Player player)
+   {
+      for (int i = 0; i < times; i++)
+      {
+         m_audio.Stop();
+         m_audio.PlayOneShot(clip);
+         onCollect.Invoke(player);
+         yield return new WaitForSeconds(0.1f);
+      }
+   }
+   
+   protected virtual IEnumerator QuickShowRoutine()
+   {
+      var elapsedTime = 0f;
+      var initialPosition = transform.position;
+      var targetPosition = initialPosition + Vector3.up * quickShowHeight;
+      
+      display.SetActive(true);
+      m_collider.enabled = false;
+
+      while (elapsedTime < quickShowDuration)
+      {
+         var t = elapsedTime / quickShowDuration;
+         transform.position = Vector3.Lerp(initialPosition, targetPosition, t);
+         elapsedTime += Time.deltaTime;
+         yield return null;
+      }
+
+      transform.position = targetPosition;
+      yield return new WaitForSeconds(hideDuration);
+      transform.position = initialPosition;
+      Vanish();
+   }
+   
+   protected virtual void Awake()
+   {
+      InitializeAudio();
+      InitializeCollider();
+      InitializeTransform();
+      InitializeDisplay();
+      InitializeVelocity();
    }
    
    protected virtual void Update()
