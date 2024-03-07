@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
@@ -10,6 +11,7 @@ public class Collectable : MonoBehaviour
 {
    [Header("General Settings")] 
    public GameObject display;
+   public bool collectOnContact = true;
    public AudioClip clip;
    public int times = 1;
    public ParticleSystem particle;
@@ -241,6 +243,26 @@ public class Collectable : MonoBehaviour
             HandleMovement();
             HandleSweep();
          }
+      }
+   }
+
+   protected virtual void OnTriggerStay(Collider other)
+   {
+      if (collectOnContact && other.CompareTag(GameTag.Player))
+      {
+         if (other.TryGetComponent<Player>(out var player))
+         {
+            Collect(player);
+         }
+      }
+   }
+
+   protected void OnDrawGizmos()
+   {
+      if (usePhysics)
+      {
+         Gizmos.color = Color.green;
+         Gizmos.DrawWireSphere(transform.position,collisionRadius);
       }
    }
 }

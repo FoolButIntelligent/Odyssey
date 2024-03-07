@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,7 +24,14 @@ public class ItemBox : MonoBehaviour,IEntityContact
     {
         foreach (var collectable in collectables)
         {
-            
+            if (!collectable.hidden)
+            {
+                collectable.gameObject.SetActive(false);
+            }
+            else
+            {
+                collectable.collectOnContact = false;
+            }
         }
     }
 
@@ -41,6 +49,14 @@ public class ItemBox : MonoBehaviour,IEntityContact
                 {
                     collectables[m_index].gameObject.SetActive(true);
                 }
+
+                m_index = Mathf.Clamp(m_index + 1, 0, collectables.Length);
+                onCollect?.Invoke();
+            }
+
+            if (m_index == collectables.Length)
+            {
+                Disable();
             }
         }
     }
@@ -68,7 +84,7 @@ public class ItemBox : MonoBehaviour,IEntityContact
         {
             if (entity.velocity.y > 0 && entity.position.y < m_collider.bounds.min.y)
             {
-                
+                Collect(player);
             }
         }
     }

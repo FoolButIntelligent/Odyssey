@@ -34,7 +34,7 @@ public abstract class EntityState<T> where T: Entity<T>
    
    protected abstract void OnStep(T entity);
 
-   public static EntityState<T> CreatFromString(string typeName)
+   public static EntityState<T> CreateFromString(string typeName)
    {
       return (EntityState<T>)System.Activator.CreateInstance(System.Type.GetType(typeName));
    }
@@ -44,7 +44,7 @@ public abstract class EntityState<T> where T: Entity<T>
 
       foreach (var typeName in array)
       {
-         list.Add(CreatFromString(typeName));
+         list.Add(CreateFromString(typeName));
       }
 
       return list;
