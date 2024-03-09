@@ -19,12 +19,14 @@ public class Player : Entity<Player>
     public virtual void Decelerate() => Decelerate(stats.current.deceleration);
     protected virtual void InitializeInputs() => inputs = GetComponent<PlayerInputManager>();
     protected virtual void InitializeStats() => stats = GetComponent<PlayerStatsManager>();
-
+    protected virtual void InitializeTag() => tag = GameTags.Player;
+    
     protected override void Awake()
     {
         base.Awake();
         InitializeInputs(); 
         InitializeStats();
+        InitializeTag();
     }
 
     public virtual void Accelerate(Vector3 direction)
@@ -99,22 +101,12 @@ public class Player : Entity<Player>
          playerEvents.OnJump?.Invoke();
      }
 
-     // public virtual void Backflip(float force)
-     // {
-     //     if (stats.current.canBackflip)
-     //     {
-     //         verticalVelocity = Vector3.up * stats.current.backlflipJumpHeight;
-     //         lateralVelocity = -transform.forward * force;
-     //         states.Change<BackflipPlayerState>();
-     // //        PlayerEvents.OnBackflip.Invoke();
-     //     }
-     // }
-
-
-
-     // public virtual void BackflipAcceleration()
-     // {
-     //     var direction = inputs.GetMovementCameraDirection();
-     //     Accelerate(direction,stats.current.backflipTuningDrag,stats.current.backflipAirAcceleration,stats.current.backflipTopSpeed);
-     // }
+     public virtual void PushRigidbody(Collider other)
+     {
+         if (IsPointUnderStep(other.bounds.max) && other.TryGetComponent(out Rigidbody rigidbody))
+         {
+             var force = lateralVelocity * stats.current.pushForce;
+             rigidbody.velocity += force / rigidbody.mass * Time.deltaTime;
+         }
+     }
 }

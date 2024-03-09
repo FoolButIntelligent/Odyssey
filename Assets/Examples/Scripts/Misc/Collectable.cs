@@ -148,7 +148,7 @@ public class Collectable : MonoBehaviour
       if (Physics.SphereCast(transform.position, collisionRadius, direction, out var hit, distance,
              Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
       {
-         if (!hit.collider.CompareTag(GameTag.Player))
+         if (!hit.collider.CompareTag(GameTags.Player))
          {
             var bounceDirection = Vector3.Reflect(direction, hit.normal);
             m_velocity = bounceDirection * magnitude * bounciness;
@@ -248,7 +248,7 @@ public class Collectable : MonoBehaviour
 
    protected virtual void OnTriggerStay(Collider other)
    {
-      if (collectOnContact && other.CompareTag(GameTag.Player))
+      if (collectOnContact && other.CompareTag(GameTags.Player))
       {
          if (other.TryGetComponent<Player>(out var player))
          {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameTag
+public class GameTags
 {
     public static string Player = "Player";
 }

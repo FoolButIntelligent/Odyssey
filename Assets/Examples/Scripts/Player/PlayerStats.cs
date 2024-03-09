@@ -10,6 +10,7 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float gravityTopSpeed = 58f;
     public float gravity = 38f;
     public float fallGravity = 65;
+    public float pushForce = 4f;
     [Header("Motion Stats")] 
     public float brakeThreshold = -0.8f;
     public float turningDrag = 28f;

@@ -28,4 +28,10 @@ public class IdlePlayerState : PlayerState
          player.states.Change<WalkPlayerState>();
       }
    }
+   
+    
+    public override void OnContact(Player player, Collider other)
+    {
+        
+    }
 }

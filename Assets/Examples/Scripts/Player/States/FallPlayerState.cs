@@ -25,4 +25,9 @@ public class FallPlayerState : PlayerState
             player.states.Change<IdlePlayerState>();
         }
     }
+    
+    public override void OnContact(Player player, Collider other)
+    {
+        player.PushRigidbody(other);
+    }
 }
