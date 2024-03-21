@@ -22,7 +22,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
    protected virtual void Awake()
    {
-      if (m_instance != this)
+      if (instance != this)
       {
          Destroy(gameObject);
       }

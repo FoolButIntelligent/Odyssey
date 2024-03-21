@@ -10,15 +10,14 @@ public class GameSaver : Singleton<GameSaver>
       var list = new GameData[TotolSlots];
       for (int i = 0; i < TotolSlots; i++)
       {
-         var data = Load(i);
+         //var data = Load(i); TODO:Load function
 
-         if (data != null)
+         /*if (data != null)
          {
             list[i] = data;
-         }
+         }*/
          
       }
-      
       return list;
    }
 }

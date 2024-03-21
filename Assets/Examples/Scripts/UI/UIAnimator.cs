@@ -11,6 +11,7 @@ public class UIAnimator : MonoBehaviour
     public UnityEvent OnHide;
     public bool hiddenOnAwake;
     protected Animator m_animator;
+    public string normalTrigger = "Normal";
     public string hideTrigger = "Hide";
     public string showTrigger = "Show";
     
