@@ -495,7 +495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1365185818260748731
 RectTransform:
   m_ObjectHideFlags: 0
@@ -693,6 +693,7 @@ GameObject:
   - component: {fileID: 251053680566106868}
   - component: {fileID: 1934988735909032319}
   - component: {fileID: 343775082016598571}
+  - component: {fileID: 1852696080580172761}
   m_Layer: 5
   m_Name: SaveCard
   m_TagString: Untagged
@@ -760,6 +761,33 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1852696080580172761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6003683101059377018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f02d1b31206ef4b92f153e01c162a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextScene: 
+  retriesFormat: 00
+  starsFormat: 00
+  coinsFormat: 000
+  dateFormat: MM/dd/y hh:mm
+  dataContainer: {fileID: 5271582842468575473}
+  emptyContainer: {fileID: 7638209488071419141}
+  retries: {fileID: 5402397053034665362}
+  stars: {fileID: 1357895070830079118}
+  coins: {fileID: 4903384978069950278}
+  createAt: {fileID: 5958970189448766439}
+  updateAt: {fileID: 4040822676653833074}
+  loadButton: {fileID: 3410121853031849168}
+  deleteButton: {fileID: 128922351441747146}
+  newGameButton: {fileID: 4552778164954612310}
 --- !u!1 &6182905316136188406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,7 +1317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7379100976356098466
 RectTransform:
   m_ObjectHideFlags: 0

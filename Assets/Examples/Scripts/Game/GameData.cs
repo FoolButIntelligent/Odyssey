@@ -11,6 +11,15 @@ public class GameData : MonoBehaviour
    public string creatAt;
    public string updateAt;
 
+   public static GameData Create()
+   {
+      return new GameData()
+      {
+         retries = Game.instance.initialRetries,
+         creatAt = DateTime.UtcNow.ToString(),
+         updateAt = DateTime.UtcNow.ToString()
+      };
+   }
    public virtual string ToJson()
    {
       return JsonUtility.ToJson(this);

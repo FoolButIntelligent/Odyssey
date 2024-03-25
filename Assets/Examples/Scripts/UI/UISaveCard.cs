@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,12 +43,28 @@ public class UISaveCard : MonoBehaviour
    }
    public virtual void Create()
    {
-      
+      var data = GameData.Create();
    }
 
    public virtual void Fill(int index, GameData data)
    {
-      
+      m_index = index;
+      isFilled = data != null;
+      dataContainer.SetActive(isFilled);
+      emptyContainer.SetActive(!isFilled);
+      loadButton.interactable = isFilled;
+      deleteButton.interactable = isFilled;
+      newGameButton.interactable = !isFilled;
+
+      if (data != null)
+      {
+         m_data = data;
+         retries.text = data.retries.ToString(retriesFormat);
+         stars.text = data.retries.ToString(starsFormat);
+         coins.text = data.retries.ToString(coinsFormat);
+         createAt.text = DateTime.Parse(data.creatAt).ToLocalTime().ToString(dateFormat);
+         updateAt.text = DateTime.Parse(data.updateAt).ToLocalTime().ToString(dateFormat);
+      }
    }
    
    protected void Start()
