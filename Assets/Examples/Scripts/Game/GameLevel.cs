@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class GameLevel : MonoBehaviour
+public class GameLevel  
 {
    public bool locked;
    public string scene;

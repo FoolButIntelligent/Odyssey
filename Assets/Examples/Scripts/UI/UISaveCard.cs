@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UISaveCard : MonoBehaviour
@@ -44,6 +45,9 @@ public class UISaveCard : MonoBehaviour
    public virtual void Create()
    {
       var data = GameData.Create();
+      GameSaver.instance.Save(data, m_index);
+      Fill(m_index,data);
+      EventSystem.current.SetSelectedGameObject(loadButton.gameObject);
    }
 
    public virtual void Fill(int index, GameData data)
@@ -62,7 +66,7 @@ public class UISaveCard : MonoBehaviour
          retries.text = data.retries.ToString(retriesFormat);
          stars.text = data.retries.ToString(starsFormat);
          coins.text = data.retries.ToString(coinsFormat);
-         createAt.text = DateTime.Parse(data.creatAt).ToLocalTime().ToString(dateFormat);
+         createAt.text = DateTime.Parse(data.createAt).ToLocalTime().ToString(dateFormat);
          updateAt.text = DateTime.Parse(data.updateAt).ToLocalTime().ToString(dateFormat);
       }
    }

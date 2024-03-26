@@ -16,7 +16,7 @@ public class UISaveList : MonoBehaviour
 
         for (int i = 0; i < data.Length; i++)
         {
-            m_cardList.Add(Instantiate(card,container));
+            m_cardList.Add(Instantiate(this.card,container));
             m_cardList[i].Fill(i, data[i]);
         }
 

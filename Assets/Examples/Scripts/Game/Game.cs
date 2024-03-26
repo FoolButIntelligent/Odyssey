@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Game : Singleton<Game>
 {
     public UnityEvent<int> OnRetriesSet;
+    public List<GameLevel> levels;
     public int initialRetries = 3;
     protected int m_retries;
     public int retries

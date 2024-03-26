@@ -34,7 +34,22 @@ public class GameSaver : Singleton<GameSaver>
       }
       return list;
    }
-
+   public virtual void Save(GameData data,int index)
+   {
+      switch (mode)
+      {
+         default:
+         case Mode.Binary: 
+            SaveBinary(data,index);
+            break;
+         case Mode.JSON:
+            SaveJson(data,index);
+            break;
+         case Mode.PlayerPrefs:
+            SavePlayerPrefs(data,index);
+            break;
+      }
+   }
    public virtual GameData Load(int index)
    {
       switch (mode)
@@ -52,23 +67,25 @@ public class GameSaver : Singleton<GameSaver>
    protected virtual void SaveBinary(GameData data, int index)
    {
       var path = GetFilePath(index);
-      var formmatter = new BinaryFormatter();
-      var stream = new FileStream(path, FileMode.Open);
-      formmatter.Serialize(stream,data);
+      var formatter = new BinaryFormatter();
+      var stream = new FileStream(path, FileMode.Create);
+      formatter.Serialize(stream,data);
       stream.Close();
    }
    
    protected virtual GameData LoadBinary(int index)
    {
       var path = GetFilePath(index);
+      Debug.Log($"Saving data to {path}");//test
 
       if (File.Exists(path))
       {
-         var formatter = new BinaryFormatter();
-         var stream = new FileStream(path, FileMode.Open);
-         var data = formatter.Deserialize(stream);
-         stream.Close();
-         return data as GameData;
+         using (var stream = new FileStream(path, FileMode.Open))
+         {
+            var formatter = new BinaryFormatter();
+            var data = formatter.Deserialize(stream) as GameData;
+            return data;
+         }
       }
 
       return null;
@@ -115,7 +132,7 @@ public class GameSaver : Singleton<GameSaver>
    
    protected virtual string GetFilePath(int index)
    {
-      var extension = mode == Mode.JSON ? "Json" : binaryFileExtension;
+      var extension = mode == Mode.JSON ? "json" : binaryFileExtension;
       return Application.persistentDataPath + $"/{fileName}_{index}.{extension}";
    }
 }

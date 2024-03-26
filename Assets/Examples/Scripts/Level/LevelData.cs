@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class LevelData : MonoBehaviour
+public class LevelData 
 {
     public bool locked;
     public int coins;

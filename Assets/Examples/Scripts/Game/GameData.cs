@@ -1,14 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
-public class GameData : MonoBehaviour
+public class GameData 
 {
    public int retries;
    public LevelData[] levels;
-   public string creatAt;
+   public string createAt;
    public string updateAt;
 
    public static GameData Create()
@@ -16,8 +17,15 @@ public class GameData : MonoBehaviour
       return new GameData()
       {
          retries = Game.instance.initialRetries,
-         creatAt = DateTime.UtcNow.ToString(),
-         updateAt = DateTime.UtcNow.ToString()
+         createAt = DateTime.UtcNow.ToString(),
+         updateAt = DateTime.UtcNow.ToString(),
+         levels = Game.instance.levels.Select((level) =>
+         { 
+            return new LevelData()
+            {
+               locked = level.locked
+            };
+         }).ToArray()
       };
    }
    public virtual string ToJson()
