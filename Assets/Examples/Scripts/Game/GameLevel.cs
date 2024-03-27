@@ -16,4 +16,12 @@ public class GameLevel
    public float time { get; set; }
    public static readonly int StarsPerLevel = 3;
    public bool[] stars { get; set; } = new bool[StarsPerLevel];
+   
+   public virtual void LoadState(LevelData data)
+   {
+      locked = data.locked;
+      coins = data.coins;
+      time = data.time;
+      stars = data.stars;
+   }
 }

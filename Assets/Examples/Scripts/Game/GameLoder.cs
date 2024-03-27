@@ -11,14 +11,23 @@ public class GameLoder : Singleton<GameLoder>
     public bool isLoading { get; protected set; }
     public UIAnimator loadingScreen;
     public float loadingProgress { get; protected set; }
+    public string currentScene => SceneManager.GetActiveScene().name;
 
     [Header("Minimum Time")] 
     public float starDelay = 1f;
     public float finishDelay = 1f;
     
+    public virtual void Reload()
+    {
+        StartCoroutine(LoadRoutine(currentScene));
+    } 
+    
     public virtual void Load(string scene)
     {
-        StartCoroutine(LoadRoutine(scene));
+        if (!isLoading && (currentScene != scene))
+        {
+            StartCoroutine(LoadRoutine(scene));   
+        }
     }
 
     protected virtual IEnumerator LoadRoutine(string scene)
