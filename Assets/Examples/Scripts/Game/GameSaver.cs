@@ -22,7 +22,7 @@ public class GameSaver : Singleton<GameSaver>
    public virtual GameData[] LoadList()
    {
       var list = new GameData[TotolSlots];
-      /*for (int i = 0; i < TotolSlots; i++)
+      for (int i = 0; i < TotolSlots; i++)
       {
          var data = Load(i); 
 
@@ -31,7 +31,7 @@ public class GameSaver : Singleton<GameSaver>
             list[i] = data;
          }
          
-      }*/
+      }
       return list;
    }
    public virtual void Save(GameData data,int index)

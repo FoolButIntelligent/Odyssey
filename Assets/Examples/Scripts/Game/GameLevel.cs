@@ -24,4 +24,13 @@ public class GameLevel
       time = data.time;
       stars = data.stars;
    }
+
+   public static string FormattedTime(float time)
+   {
+      var minutes = Mathf.FloorToInt(time / 60f);
+      var seconds = Mathf.FloorToInt(time % 60f);
+      var milliseconds = Mathf.FloorToInt((time * 1000f) % 1000f);
+
+      return minutes.ToString("0") + "'" + seconds.ToString("00") + "\"" + milliseconds.ToString("00");
+   }
 }
