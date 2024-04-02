@@ -24,6 +24,14 @@ public class Game : Singleton<Game>
         }
     }
 
+    public static void LockCursor(bool value = true)
+    {
+#if UNITY_STANDALONE//确保该代码仅在 Unity 应用程序的独立构建中被编译执行
+        Cursor.visible = value;
+        Cursor.lockState = value ? CursorLockMode.Locked : CursorLockMode.None;
+#endif
+    }
+    
     public virtual void LoadState(int index, GameData data)
     {
         m_dataIndex = index;

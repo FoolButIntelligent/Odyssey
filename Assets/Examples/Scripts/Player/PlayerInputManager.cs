@@ -13,6 +13,7 @@ public class PlayerInputManager : MonoBehaviour
     protected InputAction m_run;
     protected InputAction m_jump;
     protected InputAction m_look;
+    protected InputAction m_pause;
     protected Camera m_camera;
     protected float? m_lastJumpTime;
     protected const float k_jumpBuffer = 0.15f;
@@ -46,12 +47,15 @@ public class PlayerInputManager : MonoBehaviour
     }
 
     public virtual bool GetRun() => m_run.IsPressed();
+    public virtual bool GetPauseDown() => m_pause.WasPressedThisFrame();
+    
     protected virtual void CacheActions()
     {
         m_movement = actions["Movement"];
         m_run = actions["Run"];
         m_jump = actions["Jump"];
         m_look = actions["Look"];
+        m_pause = actions["Pause"];
     }
 
     public virtual Vector3 GetMovementDirection()
