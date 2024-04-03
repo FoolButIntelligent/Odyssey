@@ -12,6 +12,7 @@ public class Player : Entity<Player>
     public PlayerStatsManager stats { get; protected set; }
     public int jumpCounter { get; protected set; }
     public bool holding { get; protected set; }
+    public Health health { get; protected set; }
 
     public virtual void FaceDirectionSmooth(Vector3 direction) =>
         FaceDirectionSmooth(direction, stats.current.rotationSpeed);
@@ -20,12 +21,14 @@ public class Player : Entity<Player>
     protected virtual void InitializeInputs() => inputs = GetComponent<PlayerInputManager>();
     protected virtual void InitializeStats() => stats = GetComponent<PlayerStatsManager>();
     protected virtual void InitializeTag() => tag = GameTags.Player;
+    protected virtual void InitializeHealth() => health = GetComponent<Health>();
     
     protected override void Awake()
     {
         base.Awake();
         InitializeInputs(); 
         InitializeStats();
+        InitializeHealth();
         InitializeTag();
     }
 

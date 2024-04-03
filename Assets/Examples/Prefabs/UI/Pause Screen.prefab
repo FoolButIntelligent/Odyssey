@@ -121,7 +121,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2240007062905539242}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6853462665719344996}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &556594977309289166
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +453,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5237607240520880599}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2334996817775730925}
+        m_TargetAssemblyTypeName: LevelController, Assembly-CSharp
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3380298973889991970
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,6 +921,7 @@ GameObject:
   - component: {fileID: 6700639276570514855}
   - component: {fileID: 6647432515139845571}
   - component: {fileID: 8534456263818223434}
+  - component: {fileID: 2334996817775730925}
   m_Layer: 0
   m_Name: Pause Menu
   m_TagString: Untagged
@@ -968,6 +993,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 1
   m_VerticalFit: 1
+--- !u!114 &2334996817775730925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6853462665719344996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d81de7601ee6ad49b9db5083d593c2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7748290650150367983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,7 +1122,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  hiddenOnAwake: 0
+  hiddenOnAwake: 1
   normalTrigger: Normal
   hideTrigger: Hide
   showTrigger: Show

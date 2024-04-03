@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6672535058828399878}
   - component: {fileID: 6194260955851798115}
   - component: {fileID: 6259243485203784190}
+  - component: {fileID: 2628518204942836587}
   m_Layer: 0
   m_Name: Alice
   m_TagString: Untagged
@@ -176,6 +177,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc999a19e64fe794884a25014601b960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2628518204942836587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6968742678998026874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd6f2842f4b44f847adab330fa754a23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initial: 3
+  max: 3
+  onChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &6968742677603389583
 PrefabInstance:
   m_ObjectHideFlags: 0

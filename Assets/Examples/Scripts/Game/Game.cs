@@ -44,6 +44,12 @@ public class Game : Singleton<Game>
             levels[i].LoadState(data.levels[i]);
         }
     }
+
+    public virtual GameLevel GetCurrentLevel()
+    {
+        var scene = GameLoder.instance.currentScene;
+        return levels.Find((level) => level.scene == scene);
+    }
     
     protected override void Awake()
     {
