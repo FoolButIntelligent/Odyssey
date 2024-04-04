@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 225647285817924865}
   - component: {fileID: 5726890559160432040}
   - component: {fileID: 6182086866555617596}
+  - component: {fileID: 5363620717313858709}
   m_Layer: 0
   m_Name: End Level Panel
   m_TagString: Untagged
@@ -172,6 +173,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   space: 0
   eulars: {x: 0, y: -100, z: 0}
+--- !u!114 &5363620717313858709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7323918468810109798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adddf8f394872e9459c3c6e7ee786eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoToggle: 0
+  requirePlayer: 1
+  requireStomp: 0
+  activateClip: {fileID: 8300000, guid: c44bef33a5615c947b7d5255b5bcbfab, type: 3}
+  deactivateClip: {fileID: 0}
+  OnActivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6182086866555617596}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeactivate:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &5963387847510349923
 PrefabInstance:
   m_ObjectHideFlags: 0
