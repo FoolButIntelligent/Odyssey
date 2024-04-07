@@ -7,23 +7,62 @@ using UnityEngine.UI;
 
 public class LevelFinisher : Singleton<LevelFinisher>
 {
-    public float loadingDelay = 1f;
-    protected LevelPauser m_pause => LevelPauser.instance;
-    protected Level m_level => Level.instance;
-    protected GameLoder m_loder => GameLoder.instance;
-    public string exitScene;
+    /// <summary>
+    /// Called when the Level has been finished.
+    /// </summary>
+    public UnityEvent OnFinish;
 
+    /// <summary>
+    /// Called when the Level has exited.
+    /// </summary>
     public UnityEvent OnExit;
-    
+
+    public bool unlockNextLevel;
+    public string nextScene;
+    public string exitScene;
+    public float loadingDelay = 1f;
+
+    protected Game m_game => Game.instance;
+    protected Level m_level => Level.instance;
+    protected LevelScore m_score => LevelScore.instance;
+    protected LevelPauser m_pauser => LevelPauser.instance;
+    protected GameLoder m_loader => GameLoder.instance;
+
+    protected virtual IEnumerator FinishRoutine()
+    {
+        m_pauser.Pause(false);
+        m_pauser.canPause = false;
+        m_score.stopTime = true;
+        m_level.player.inputs.enabled = false;
+
+        yield return new WaitForSeconds(loadingDelay);
+
+        if (unlockNextLevel)
+        {
+            m_game.UnlockNextLevel();
+        }
+
+        Game.LockCursor(false);
+        m_score.Consolidate();
+        m_loader.Load(nextScene);
+        OnFinish?.Invoke();
+    }
+
     protected virtual IEnumerator ExitRoutine()
     {
-        m_pause.Pause(false);
-        m_pause.canPause = false;
+        m_pauser.Pause(false);
+        m_pauser.canPause = false;
         m_level.player.inputs.enabled = false;
         yield return new WaitForSeconds(loadingDelay);
         Game.LockCursor(false);
-        m_loder.Load(exitScene);
+        m_loader.Load(exitScene);
         OnExit?.Invoke();
+    }
+    
+    public virtual void Finish()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FinishRoutine());
     }
     
     public virtual void Exit()

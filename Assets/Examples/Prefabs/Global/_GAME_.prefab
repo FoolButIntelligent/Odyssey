@@ -465,6 +465,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd62b1ea94406c429f0012f2d568372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnRetriesSet:
+    m_PersistentCalls:
+      m_Calls: []
+  levels:
+  - locked: 0
+    scene: TestLevelScene
+    name: Test Level
+    description: Play around with the features of the asset.
+    image: {fileID: 21300000, guid: b6c83d91877ad26418277a0d3cabbe17, type: 3}
+  initialRetries: 3
 --- !u!114 &6196439475493483432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,6 +487,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f130ce096441814b83afb6367842b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mode: 0
+  binaryFileExtension: data
+  fileName: save
 --- !u!114 &6196439475493483479
 MonoBehaviour:
   m_ObjectHideFlags: 0

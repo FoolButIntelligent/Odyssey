@@ -1344,6 +1344,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6196439475493483478, guid: 649e863e4ecfb744ea9dc07e2fd1ca8e, type: 3}
+      propertyPath: levels.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196439475493483478, guid: 649e863e4ecfb744ea9dc07e2fd1ca8e, type: 3}
+      propertyPath: levels.Array.data[0].name
+      value: Test Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196439475493483478, guid: 649e863e4ecfb744ea9dc07e2fd1ca8e, type: 3}
+      propertyPath: levels.Array.data[0].image
+      value: 
+      objectReference: {fileID: 21300000, guid: b6c83d91877ad26418277a0d3cabbe17, type: 3}
+    - target: {fileID: 6196439475493483478, guid: 649e863e4ecfb744ea9dc07e2fd1ca8e, type: 3}
+      propertyPath: levels.Array.data[0].scene
+      value: TestLevelScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196439475493483478, guid: 649e863e4ecfb744ea9dc07e2fd1ca8e, type: 3}
+      propertyPath: levels.Array.data[0].description
+      value: Play around with the features of the asset.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 649e863e4ecfb744ea9dc07e2fd1ca8e, type: 3}
 --- !u!1 &2057884148

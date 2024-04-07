@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Game : Singleton<Game>
 {
     public UnityEvent<int> OnRetriesSet;
+    public UnityEvent OnSavingRequested;
     public List<GameLevel> levels;
     public int initialRetries = 3;
     protected int m_dataIndex;
@@ -45,10 +47,54 @@ public class Game : Singleton<Game>
         }
     }
 
+    public virtual LevelData[] LevelsData()
+    {
+        return levels.Select(level => level.ToData()).ToArray();
+    }
+    
     public virtual GameLevel GetCurrentLevel()
     {
         var scene = GameLoder.instance.currentScene;
         return levels.Find((level) => level.scene == scene);
+    }
+    
+    public virtual int GetCurrentLevelIndex()
+    {
+        var scene = GameLoder.instance.currentScene;
+        return levels.FindIndex((level) => level.scene == scene);
+    }
+    
+    public virtual void RequestSaving()
+    {
+        GameSaver.instance.Save(ToData(), m_dataIndex);
+        OnSavingRequested?.Invoke();
+    }
+    
+    /// <summary>
+    /// Unlocks the next level from the levels list.
+    /// </summary>
+    public virtual void UnlockNextLevel()
+    {
+        var index = GetCurrentLevelIndex() + 1;
+
+        if (index >= 0 && index < levels.Count)
+        {
+            levels[index].locked = false;
+        }
+    }
+
+    /// <summary>
+    /// Returns the Game Data of this Game to be used by the Data Layer.
+    /// </summary>
+    public virtual GameData ToData()
+    {
+        return new GameData()
+        {
+            retries = m_retries,
+            levels = LevelsData(),
+            createAt = m_createdAt.ToString(),
+            updateAt = DateTime.UtcNow.ToString()
+        };
     }
     
     protected override void Awake()

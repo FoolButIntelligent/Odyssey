@@ -25,6 +25,17 @@ public class GameLevel
       stars = data.stars;
    }
 
+   public virtual LevelData ToData()
+   {
+      return new LevelData()
+      {
+         locked = this.locked,
+         coins = this.coins,
+         time = this.time,
+         stars = this.stars
+      };
+   }
+   
    public static string FormattedTime(float time)
    {
       var minutes = Mathf.FloorToInt(time / 60f);
