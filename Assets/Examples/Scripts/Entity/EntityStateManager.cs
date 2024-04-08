@@ -76,10 +76,8 @@ public abstract class EntityStateManager<T> : EntityStateManager where T :  Enti
                 current.Exit(entity);
                 last = current;
             }
-            
             current = to;
             current.Enter(entity); 
-            
         }
     }
 

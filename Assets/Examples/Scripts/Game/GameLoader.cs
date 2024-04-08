@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class GameLoder : Singleton<GameLoder>
+public class GameLoader : Singleton<GameLoader>
 {
     public UnityEvent OnLoadStart;
     public UnityEvent OnLoadFinish;

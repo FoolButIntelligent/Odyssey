@@ -26,7 +26,7 @@ public class LevelFinisher : Singleton<LevelFinisher>
     protected Level m_level => Level.instance;
     protected LevelScore m_score => LevelScore.instance;
     protected LevelPauser m_pauser => LevelPauser.instance;
-    protected GameLoder m_loader => GameLoder.instance;
+    protected GameLoader m_loader => GameLoader.instance;
 
     protected virtual IEnumerator FinishRoutine()
     {

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3040800891179293871}
   - component: {fileID: 7692543162639383213}
   - component: {fileID: 7677021191216526855}
+  - component: {fileID: 6772938528685587328}
   m_Layer: 0
   m_Name: _LEVEL_
   m_TagString: Untagged
@@ -127,6 +128,28 @@ MonoBehaviour:
   nextScene: LevelSelect
   exitScene: LevelSelect
   loadingDelay: 1
+--- !u!114 &6772938528685587328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557946640937483517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61aae91234038704eb0d01148732122b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnRespawn:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameOver:
+    m_PersistentCalls:
+      m_Calls: []
+  respawnFadeOutDelay: 1
+  respawnFadeInDelay: 0.5
+  gameOverFadeOutDelay: 5
+  restartFadeOutDelay: 0.5
 --- !u!1 &557946642461056837
 GameObject:
   m_ObjectHideFlags: 0

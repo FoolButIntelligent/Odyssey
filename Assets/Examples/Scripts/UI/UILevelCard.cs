@@ -29,7 +29,7 @@ public class UILevelCard : MonoBehaviour
     
     public virtual void Play()
     {
-        GameLoder.instance.Load(scene);
+        GameLoader.instance.Load(scene);
     }
 
     public virtual void Fill(GameLevel level)

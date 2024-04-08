@@ -60,6 +60,13 @@ public class LevelScore : Singleton<LevelScore>
         }
         
         OnScoreLoded?.Invoke();
-        
+    }
+
+    protected virtual void Update()
+    {
+        if (!stopTime)
+        {
+            time += Time.deltaTime;
+        }
     }
 }

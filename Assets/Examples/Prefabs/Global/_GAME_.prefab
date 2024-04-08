@@ -468,6 +468,9 @@ MonoBehaviour:
   OnRetriesSet:
     m_PersistentCalls:
       m_Calls: []
+  OnSavingRequested:
+    m_PersistentCalls:
+      m_Calls: []
   levels:
   - locked: 0
     scene: TestLevelScene
@@ -522,6 +525,7 @@ GameObject:
   - component: {fileID: 6196439475719454259}
   - component: {fileID: 6196439475719454261}
   - component: {fileID: 6196439475719454260}
+  - component: {fileID: 1714652643389019245}
   m_Layer: 5
   m_Name: Fader
   m_TagString: Untagged
@@ -587,3 +591,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1714652643389019245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196439475719454258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0583676b04bed0419811092feaf898a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1

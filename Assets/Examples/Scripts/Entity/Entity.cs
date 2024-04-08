@@ -60,6 +60,8 @@ public abstract class Entity : MonoBehaviour
         var bottom = position + Vector3.down * offset;
         return Physics.OverlapCapsuleNonAlloc(top, bottom, overlapsRadius, result);
     }
+    
+    public virtual void ApplyDamage(int damage, Vector3 origin) { }
 }
 public abstract class Entity<T> : Entity where T :Entity<T>
 {
@@ -225,7 +227,15 @@ public abstract class Entity<T> : Entity where T :Entity<T>
             lateralVelocity = velocity + turningVelocity;
         }
     }
-
+    public virtual void FaceDirection(Vector3 direction)
+    {
+        if (direction.sqrMagnitude > 0)
+        {
+            var rotation = Quaternion.LookRotation(direction, Vector3.up);
+            transform.rotation = rotation;
+        }
+    }
+    
     public virtual void FaceDirectionSmooth(Vector3 direction,float degreesPerSpeed)
     {
         if (direction != Vector3.zero)

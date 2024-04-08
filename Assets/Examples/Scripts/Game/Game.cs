@@ -54,13 +54,13 @@ public class Game : Singleton<Game>
     
     public virtual GameLevel GetCurrentLevel()
     {
-        var scene = GameLoder.instance.currentScene;
+        var scene = GameLoader.instance.currentScene;
         return levels.Find((level) => level.scene == scene);
     }
     
     public virtual int GetCurrentLevelIndex()
     {
-        var scene = GameLoder.instance.currentScene;
+        var scene = GameLoader.instance.currentScene;
         return levels.FindIndex((level) => level.scene == scene);
     }
     
