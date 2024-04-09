@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1009167178438343494}
+  - component: {fileID: 7584220146591164353}
   - component: {fileID: 3354664892793766258}
   m_Layer: 0
   m_Name: Spike Panel
@@ -17,8 +17,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1009167178438343494
-Transform:
+--- !u!224 &7584220146591164353
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -33,6 +33,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3354664892793766258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +88,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1009167178438343494}
+    m_TransformParent: {fileID: 7584220146591164353}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d1d049da5e539aa45b7a1cc1fc908c22, type: 3}
       propertyPath: m_RootOrder
@@ -157,21 +162,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 0.8, z: 2}
   m_Center: {x: 0, y: 0.44999996, z: 0}
---- !u!114 &5992720318981034832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 616222265037044411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 111bae75eff32f941a36e26f1047ae70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSolid: 1
-  damageOnlyFromAbove: 1
-  damage: 1
 --- !u!114 &2980093139695621851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +177,21 @@ MonoBehaviour:
   offset: {x: 0, y: -1, z: 0}
   duration: 0.25
   resetDuration: 0.1
+--- !u!114 &5992720318981034832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616222265037044411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111bae75eff32f941a36e26f1047ae70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSolid: 1
+  damageOnlyFromAbove: 1
+  damage: 1
 --- !u!4 &3599972056612512141 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d1d049da5e539aa45b7a1cc1fc908c22, type: 3}
@@ -208,6 +213,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6464809856111060268, guid: d1d049da5e539aa45b7a1cc1fc908c22, type: 3}
